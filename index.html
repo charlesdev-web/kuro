@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nami Tatouage</title>
+<meta name="description" content="Nami, atelier de tatouage japonais en Bretagne. Carpes koï, dragons, vagues : des pièces dessinées sur mesure. Site de démonstration New Light Studio.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
+<style>
+/* Layout : une estampe. Papier crème, encre noire, bleu de Prusse d'Hokusai, sceau rouge. Une grande vague se trace au chargement. */
+:root {
+  --paper: #F1EADB;
+  --paper-2: #E7DECB;
+  --ink: #16140F;
+  --ink-soft: #4A4436;
+  --prussian: #1D3A5C;
+  --prussian-2: #2E5680;
+  --seal: #B1262B;
+  --seal-dark: #8E1D21;
+  --line: #CFC3A9;
+  --display: "Shippori Mincho", "Hiragino Mincho ProN", "Yu Mincho", Georgia, serif;
+  --body: "Zen Kaku Gothic New", "Hiragino Sans", "Helvetica Neue", Arial, sans-serif;
+  --max: 1160px;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--paper); color: var(--ink); font-family: var(--body); font-size: 1.04rem; line-height: 1.7;
+  background-image: radial-gradient(rgba(22,20,15,0.035) 1px, transparent 1px); background-size: 4px 4px;
+}
+a { color: var(--prussian); }
+a:hover { color: var(--seal); }
+:focus-visible { outline: 2px solid var(--seal); outline-offset: 3px; }
+h1, h2, h3 { font-family: var(--display); margin: 0; line-height: 1.15; text-wrap: balance; }
+p { margin: 0; }
+img { display: block; max-width: 100%; }
+
+.band { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.wrap { max-width: var(--max); margin-inline: auto; }
+.kicker { font-family: var(--body); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--seal); }
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 24px; font: 700 0.98rem var(--body); letter-spacing: 0.04em; text-decoration: none; border: 1.5px solid var(--ink); cursor: pointer; transition: background .2s, color .2s, border-color .2s; }
+.btn-ink { background: var(--ink); color: var(--paper); }
+.btn-ink:hover { background: var(--seal); border-color: var(--seal); color: #FFF; }
+.btn-line { background: transparent; color: var(--ink); }
+.btn-line:hover { background: var(--ink); color: var(--paper); }
+
+/* En-tête */
+.top { padding-block: 20px; }
+.top .wrap { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+.logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--ink); }
+.logo .stamp { width: 40px; height: 40px; background: var(--seal); color: #FBEFE6; display: grid; place-items: center; font: 800 1.35rem var(--display); }
+.logo span { font: 800 1.5rem var(--display); letter-spacing: 0.06em; }
+.nav { display: flex; gap: 4px; flex-wrap: wrap; align-items: center; }
+.nav a { color: var(--ink-soft); text-decoration: none; font-weight: 500; padding: 10px 12px; }
+.nav a:hover { color: var(--seal); }
+.nav .btn { margin-left: 8px; min-height: 42px; padding: 0 18px; }
+.nav .btn-ink, .nav .btn-ink:hover { color: var(--paper); }
+
+/* Premier écran : la vague */
+.hero { position: relative; overflow: hidden; padding-block: clamp(20px, 4vw, 48px) 0; }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); align-items: center; gap: clamp(16px, 4vw, 56px); }
+.hero-text { display: grid; gap: 22px; position: relative; z-index: 2; }
+.hero h1 { font-size: clamp(3.6rem, 10vw, 7.6rem); font-weight: 800; letter-spacing: 0.02em; line-height: 1; display: flex; align-items: flex-start; gap: 0.12em; }
+.hero h1 .kanji { font-size: 0.34em; color: #FBEFE6; background: var(--seal); padding: 0.12em 0.16em; line-height: 1; margin-top: 0.18em; }
+.hero .lead { font-family: var(--display); font-size: clamp(1.3rem, 2.6vw, 1.7rem); font-weight: 500; color: var(--ink); max-width: 26ch; }
+.hero .sub { color: var(--ink-soft); max-width: 34rem; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.wave-art { position: relative; width: 100%; max-width: 640px; justify-self: end; aspect-ratio: 1; }
+.wave-art img { display: block; width: 100%; height: 100%; mix-blend-mode: multiply;
+  -webkit-mask-image: radial-gradient(circle at 50% 50%, #000 var(--reveal), transparent calc(var(--reveal) + 18%));
+          mask-image: radial-gradient(circle at 50% 50%, #000 var(--reveal), transparent calc(var(--reveal) + 18%));
+  animation: ink 2.8s cubic-bezier(.35,.1,.2,1) .2s both, float 9s ease-in-out 3.2s infinite; transform-origin: 50% 50%; }
+@property --reveal { syntax: "<percentage>"; inherits: false; initial-value: 0%; }
+@keyframes ink { from { --reveal: 0%; filter: blur(6px); } to { --reveal: 130%; filter: none; } }
+@keyframes float { 0%, 100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(-8px) rotate(-2deg); } }
+.hero-strip { margin-top: clamp(24px, 4vw, 48px); border-block: 1.5px solid var(--ink); padding-block: 12px; overflow: hidden; white-space: nowrap; }
+.hero-strip .track { display: inline-flex; gap: 48px; animation: scroll 32s linear infinite; font: 700 1.05rem var(--display); letter-spacing: 0.08em; }
+.hero-strip .track span::after { content: "波"; color: var(--seal); margin-left: 48px; }
+@keyframes scroll { to { transform: translateX(-50%); } }
+
+/* Sections */
+.section { padding-block: clamp(64px, 9vw, 112px); }
+.section-head { display: grid; gap: 12px; max-width: 44rem; margin-bottom: clamp(28px, 4vw, 48px); }
+.section-head h2 { font-size: clamp(2rem, 4.4vw, 3.1rem); font-weight: 800; }
+.section-head p { color: var(--ink-soft); font-size: 1.08rem; }
+
+/* Galerie */
+.gallery { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 16px; }
+.piece { position: relative; margin: 0; overflow: hidden; background: var(--ink); grid-column: span 6; }
+.piece:nth-child(1) { grid-column: span 7; }
+.piece:nth-child(2) { grid-column: span 5; }
+.piece:nth-child(3) { grid-column: span 5; }
+.piece:nth-child(4) { grid-column: span 7; }
+.piece img { width: 100%; height: 100%; aspect-ratio: 4 / 3; object-fit: cover; transition: transform 1.2s cubic-bezier(.2,.7,.2,1); }
+.piece:hover img { transform: scale(1.05); }
+.piece figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 40px 20px 16px; background: linear-gradient(transparent, rgba(10,9,7,.82)); color: #F6EFE2; display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.piece figcaption strong { font: 700 1.2rem var(--display); }
+.piece figcaption span { font-size: 0.85rem; opacity: .85; }
+
+/* Artiste */
+.artist { display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); gap: clamp(28px, 5vw, 72px); align-items: center; }
+.artist-photo { position: relative; }
+.artist-photo img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+.artist-photo::after { content: "墨"; position: absolute; right: -14px; bottom: -14px; width: 64px; height: 64px; background: var(--seal); color: #FBEFE6; display: grid; place-items: center; font: 800 1.9rem var(--display); }
+.artist-text { display: grid; gap: 18px; }
+.artist-text h2 { font-size: clamp(2rem, 4.2vw, 3rem); font-weight: 800; }
+.artist-text p { color: var(--ink-soft); max-width: 36rem; }
+.facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 8px; border-top: 1.5px solid var(--ink); padding-top: 18px; }
+.facts b { display: block; font: 800 1.9rem var(--display); color: var(--prussian); }
+.facts span { font-size: 0.88rem; color: var(--ink-soft); }
+
+/* Le salon */
+.salon { position: relative; color: #F3ECDD; background: var(--ink); }
+.salon img { width: 100%; height: clamp(320px, 52vw, 620px); object-fit: cover; opacity: .82; }
+.salon-card { position: absolute; left: max(16px, env(safe-area-inset-left, 0px)); bottom: clamp(16px, 4vw, 48px); max-width: 30rem; margin-left: max(0px, calc((100% - var(--max)) / 2)); background: var(--paper); color: var(--ink); padding: 26px 28px; border-top: 6px solid var(--seal); display: grid; gap: 10px; }
+.salon-card h2 { font-size: 1.7rem; font-weight: 800; }
+.salon-card p { color: var(--ink-soft); font-size: 0.98rem; }
+
+/* Étapes */
+.steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.step { display: grid; gap: 10px; padding-top: 18px; border-top: 1.5px solid var(--ink); }
+.step .n { font: 800 1.1rem/1.6rem var(--display); height: 1.6rem; color: var(--seal); }
+.step h3 { font-size: 1.35rem; font-weight: 700; }
+.step p { color: var(--ink-soft); }
+
+/* Formulaire de projet */
+.booking { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: clamp(28px, 5vw, 64px); align-items: start; }
+.booking-side { display: grid; gap: 16px; }
+.booking-side h2 { font-size: clamp(2rem, 4.2vw, 3rem); font-weight: 800; }
+.booking-side p { color: var(--ink-soft); }
+.booking-side ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+.booking-side li { display: flex; gap: 10px; }
+.booking-side li::before { content: "波"; color: var(--seal); font-family: var(--display); font-weight: 800; }
+form { background: #FBF7EE; border: 1.5px solid var(--ink); padding: clamp(20px, 4vw, 34px); display: grid; gap: 18px; box-shadow: 8px 8px 0 var(--prussian); }
+.row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.field { display: grid; gap: 6px; min-width: 0; }
+.field label, .field legend { font-weight: 700; font-size: 0.92rem; }
+.field input, .field select, .field textarea { width: 100%; min-height: 46px; padding: 10px 12px; font: inherit; font-size: 1rem; color: var(--ink); background: #FFFDF8; border: 1.5px solid var(--line); border-radius: 0; }
+.field textarea { min-height: 110px; resize: vertical; }
+.field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--prussian); box-shadow: 0 0 0 3px rgba(29,58,92,.18); }
+fieldset.field { border: 0; padding: 0; margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chips label { position: relative; }
+.chips input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.chips span { display: inline-flex; align-items: center; min-height: 40px; padding: 0 14px; border: 1.5px solid var(--line); background: #FFFDF8; cursor: pointer; font-weight: 500; font-size: 0.95rem; }
+.chips input:checked + span { background: var(--prussian); border-color: var(--prussian); color: #FFF; }
+.chips input:focus-visible + span { outline: 2px solid var(--seal); outline-offset: 2px; }
+.file-note { font-size: 0.85rem; color: var(--ink-soft); }
+.form-note { padding: 12px 14px; background: var(--paper-2); border-left: 4px solid var(--prussian); font-size: 0.95rem; }
+
+/* Pied de page */
+.foot { background: var(--ink); color: #D9CFBB; padding-block: 36px; }
+.foot .wrap { display: flex; flex-wrap: wrap; gap: 16px 32px; justify-content: space-between; align-items: center; }
+.foot .logo { color: #F3ECDD; }
+.foot p { font-size: 0.9rem; }
+.foot a { color: #F3ECDD; }
+.demo-band { background: var(--seal); color: #FFF4EE; text-align: center; font-size: 0.86rem; padding: 8px 16px; }
+.demo-band a { color: #FFF; }
+
+@media (max-width: 900px) {
+  .hero-grid, .artist, .booking { grid-template-columns: minmax(0, 1fr); }
+  .wave-art { justify-self: center; max-width: 520px; order: -1; }
+  .steps { grid-template-columns: minmax(0, 1fr); }
+  .piece, .piece:nth-child(n) { grid-column: span 6; }
+  .piece img { aspect-ratio: 1; }
+  .salon-card { position: static; margin: 0; max-width: none; }
+}
+@media (max-width: 560px) {
+  .nav a:not(.btn) { display: none; }
+  .piece, .piece:nth-child(n) { grid-column: span 12; }
+  .row { grid-template-columns: minmax(0, 1fr); }
+  .facts { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .facts b { font-size: 1.5rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .wave-art img { animation: none; --reveal: 130%; }
+  .hero-strip .track { animation: none; }
+  .piece img { transition: none; }
+}
+</style>
+<style>body{margin:0}</style>
+</head>
+<body>
+
+<div class="demo-band">Site de démonstration réalisé par <a href="https://newlightstudio.netlify.app" target="_blank" rel="noopener">New Light Studio</a>. Le salon Nami est fictif.</div>
+
+<header class="band top">
+  <div class="wrap">
+    <a class="logo" href="#accueil" aria-label="Nami, accueil"><span class="stamp" aria-hidden="true">波</span><span>NAMI</span></a>
+    <nav class="nav" aria-label="Navigation">
+      <a href="#galerie">Galerie</a>
+      <a href="#atelier">L'atelier</a>
+      <a href="#deroulement">Déroulement</a>
+      <a class="btn btn-ink" href="#projet">Mon projet</a>
+    </nav>
+  </div>
+</header>
+
+<main id="accueil">
+  <section class="band hero" aria-labelledby="titre">
+    <div class="wrap hero-grid">
+      <div class="hero-text">
+        <span class="kicker">Tatouage japonais · Bretagne</span>
+        <h1 id="titre">Nami<span class="kanji" aria-hidden="true">波</span></h1>
+        <p class="lead">Des pièces qui bougent avec vous, comme une vague.</p>
+        <p class="sub">Carpes koï, dragons, pivoines et vagues, dessinés à la main pour votre corps. Une seule artiste, un projet à la fois.</p>
+        <div class="actions">
+          <a class="btn btn-ink" href="#projet">Proposer mon projet</a>
+          <a class="btn btn-line" href="#galerie">Voir la galerie</a>
+        </div>
+      </div>
+
+      <div class="wave-art" aria-hidden="true">
+        <img src="img/vague.jpg" alt="" width="1600" height="1600" fetchpriority="high">
+      </div>
+    </div>
+    <div class="hero-strip" aria-hidden="true">
+      <div class="track">
+        <span>Carpes koï</span><span>Dragons</span><span>Vagues</span><span>Pivoines</span><span>Masques hannya</span><span>Tigres</span>
+        <span>Carpes koï</span><span>Dragons</span><span>Vagues</span><span>Pivoines</span><span>Masques hannya</span><span>Tigres</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="band section" id="galerie" aria-labelledby="galerie-titre">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="kicker">Galerie</span>
+        <h2 id="galerie-titre">Pièces récentes</h2>
+        <p>Chaque pièce est dessinée pour la personne qui la porte : la forme du bras, le mouvement du muscle, l'histoire qu'elle raconte.</p>
+      </div>
+      <div class="gallery">
+        <figure class="piece"><img src="img/koi.jpg" alt="Tatouage d'une carpe koï rouge remontant des vagues noires, sur un avant-bras." loading="lazy"><figcaption><strong>Koï à contre-courant</strong><span>Avant-bras · rouge et noir</span></figcaption></figure>
+        <figure class="piece"><img src="img/dragon-koi.jpg" alt="Tatouage d'un dragon et d'une carpe koï bleu turquoise enroulés dans des vagues, sur un avant-bras." loading="lazy"><figcaption><strong>Dragon et koï</strong><span>Avant-bras · bleu</span></figcaption></figure>
+        <figure class="piece"><img src="img/manchette-koi.jpg" alt="Manchette colorée avec une carpe koï rouge, des fleurs de lotus turquoise et des vagues violettes." loading="lazy"><figcaption><strong>Lotus et koï</strong><span>Manchette · couleur</span></figcaption></figure>
+        <figure class="piece"><img src="img/manchette-dragon.jpg" alt="Bras complet tatoué d'un dragon rouge entouré de lotus, de fleurs de cerisier et de vagues." loading="lazy"><figcaption><strong>Le dragon du mont</strong><span>Bras complet · couleur</span></figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="band section" id="atelier" aria-labelledby="atelier-titre" style="padding-top:0">
+    <div class="wrap artist">
+      <div class="artist-photo"><img src="img/artiste.jpg" alt="Mains gantées de noir tatouant une vague japonaise sur l'épaule d'un client." loading="lazy"></div>
+      <div class="artist-text">
+        <span class="kicker">L'atelier</span>
+        <h2 id="atelier-titre">Le geste avant tout.</h2>
+        <p>Nami est un atelier privé, sur rendez-vous uniquement. Une seule artiste, formée au tatouage traditionnel japonais, qui dessine chaque pièce à la main avant de la poser.</p>
+        <p>Pas de flash recopié : on part de votre idée, de votre corps et de votre rythme. Les grandes pièces se font en plusieurs séances, sans précipitation.</p>
+        <div class="facts">
+          <div><b>1</b><span>projet à la fois</span></div>
+          <div><b>100 %</b><span>dessins originaux</span></div>
+          <div><b>4 h</b><span>par séance au maximum</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="salon" aria-labelledby="salon-titre">
+    <img src="img/salon.jpg" alt="Le salon : murs sombres, lanterne en papier, fauteuil de tatouage noir et estampes japonaises encadrées." loading="lazy">
+    <div class="salon-card">
+      <span class="kicker">Le salon</span>
+      <h2 id="salon-titre">Calme, sombre, intime.</h2>
+      <p>Une seule cabine, une lanterne, des estampes au mur. Vous êtes seul avec l'artiste, le temps de la séance.</p>
+    </div>
+  </section>
+
+  <section class="band section" id="deroulement" aria-labelledby="deroulement-titre">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="kicker">Déroulement</span>
+        <h2 id="deroulement-titre">De l'idée à la peau</h2>
+      </div>
+      <div class="steps">
+        <div class="step"><span class="n">一</span><h3>Vous décrivez votre projet</h3><p>Le motif, la zone, la taille et vos références, dans le formulaire ci-dessous. Réponse sous 72 heures.</p></div>
+        <div class="step"><span class="n">二</span><h3>On dessine ensemble</h3><p>Un rendez-vous pour valider le dessin et la place sur le corps. Un acompte réserve la date.</p></div>
+        <div class="step"><span class="n">三</span><h3>La séance</h3><p>Le jour J, le dessin est posé, puis tatoué. Vous repartez avec les conseils de cicatrisation.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band section" id="projet" aria-labelledby="projet-titre" style="background:var(--paper-2)">
+    <div class="wrap booking">
+      <div class="booking-side">
+        <span class="kicker">Demande de projet</span>
+        <h2 id="projet-titre">Racontez-moi votre idée</h2>
+        <p>Plus votre demande est précise, plus la réponse sera rapide et juste.</p>
+        <ul>
+          <li>Pas de tatouage sur les mains, le cou ou le visage pour un premier projet.</li>
+          <li>Les petites pièces (moins de 10 cm) ne sont pas prises.</li>
+          <li>Personnes majeures uniquement.</li>
+        </ul>
+      </div>
+      <form id="projet-form" novalidate>
+        <div class="row">
+          <div class="field"><label for="p-nom">Votre nom</label><input id="p-nom" name="nom" autocomplete="name" required></div>
+          <div class="field"><label for="p-mail">Votre e-mail</label><input id="p-mail" name="email" type="email" autocomplete="email" required></div>
+        </div>
+        <fieldset class="field">
+          <legend>Le motif</legend>
+          <div class="chips">
+            <label><input type="radio" name="motif" value="Carpe koï" checked><span>Carpe koï</span></label>
+            <label><input type="radio" name="motif" value="Dragon"><span>Dragon</span></label>
+            <label><input type="radio" name="motif" value="Vague"><span>Vague</span></label>
+            <label><input type="radio" name="motif" value="Pivoine"><span>Pivoine</span></label>
+            <label><input type="radio" name="motif" value="Autre"><span>Autre</span></label>
+          </div>
+        </fieldset>
+        <div class="row">
+          <div class="field"><label for="p-zone">Zone du corps</label>
+            <select id="p-zone" name="zone"><option>Avant-bras</option><option>Bras complet</option><option>Épaule</option><option>Dos</option><option>Mollet</option><option>Cuisse</option></select></div>
+          <div class="field"><label for="p-taille">Taille approximative</label>
+            <select id="p-taille" name="taille"><option>10 à 15 cm</option><option>15 à 25 cm</option><option>Plus de 25 cm</option><option>Manchette ou bras complet</option></select></div>
+        </div>
+        <div class="field"><label for="p-idee">Votre idée</label><textarea id="p-idee" name="idee">Une carpe koï qui remonte une vague, en rouge et noir, sur l'avant-bras gauche.</textarea></div>
+        <div class="field"><label for="p-ref">Images de référence (facultatif)</label><input id="p-ref" name="references" type="file" accept="image/*" multiple><span class="file-note">Jusqu'à 3 images. Elles servent seulement à comprendre votre idée.</span></div>
+        <p class="form-note" id="p-note" role="status" hidden></p>
+        <button class="btn btn-ink" type="submit">Envoyer ma demande</button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="band foot">
+  <div class="wrap">
+    <a class="logo" href="#accueil"><span class="stamp" aria-hidden="true">波</span><span>NAMI</span></a>
+    <p>Atelier de tatouage japonais · sur rendez-vous · Bretagne</p>
+    <p>Site de démonstration · <a href="https://newlightstudio.netlify.app" target="_blank" rel="noopener">New Light Studio</a></p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var form = document.getElementById('projet-form');
+  var note = document.getElementById('p-note');
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var nom = document.getElementById('p-nom').value.trim();
+    var mail = document.getElementById('p-mail').value.trim();
+    note.hidden = false;
+    if (!nom || !/.+@.+\..+/.test(mail)) {
+      note.textContent = "Indiquez votre nom et une adresse e-mail valide pour envoyer la demande.";
+      return;
+    }
+    var motif = form.querySelector('input[name="motif"]:checked').value;
+    note.textContent = "Merci " + nom + " ! Démonstration : sur un vrai site, votre projet « " + motif + " » arriverait directement chez l'artiste, et vous recevriez une confirmation par e-mail.";
+  });
+})();
+</script>
+</body>
+</html>
